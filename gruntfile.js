@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-06-30 09:52:43
- * @LastEditTime: 2020-07-01 17:48:28
+ * @LastEditTime: 2020-07-01 18:47:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \code\grunt\gruntfile.js
@@ -210,6 +210,12 @@ module.exports = grunt =>{
                 files: ['src/**/*.html'],
                 tasks: ['web_swig']
             }
+        },
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['**']
         }
     })
 
@@ -226,4 +232,6 @@ module.exports = grunt =>{
     // 热更新服务
     grunt.registerTask('serve', ['compile','browserSync:serve', 'watch']);
     grunt.registerTask('start', ['build','browserSync:start', 'watch']);
+    // 发布
+    grunt.registerTask('deploy', ['build','gh-pages']);
 }
